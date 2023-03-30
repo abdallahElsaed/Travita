@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Filter\V1\HotelFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\HotelResource;
 use App\Models\Hotel;
@@ -12,9 +13,18 @@ class HotelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return HotelResource::collection(Hotel::all());
+        $filter = new HotelFilter();
+
+        $filterItem = $filter->transform($request);
+
+        $attraction= Hotel::where($filterItem);
+
+
+        return HotelResource::collection($attraction->get()); //[['column' ,'operators' , 'value']]
+
+
     }
 
     /**

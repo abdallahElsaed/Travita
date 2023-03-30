@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Filter\V1\AttractionFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\AttractionResource;
 use App\Models\Attraction;
+use Attribute;
 use Illuminate\Http\Request;
 
 class AttractionController extends Controller
@@ -14,15 +16,17 @@ class AttractionController extends Controller
      */
     public function index(Request $request)
     {
-        $attractions =Attraction::with('attractionHours');
-        $subtype = $request->query('subtype');
-        $filters = $attractions->where('subtype' , 'LIKE' ,"%$subtype%");
-        if ($filters) {
-            return AttractionResource::collection($filters->get());
-        }
-        return AttractionResource::collection($attractions->get());
+        $filter = new AttractionFilter();
+
+        $filterItem = $filter->transform($request);
+
+        $attraction= Attraction::where($filterItem);
+
+
+        return AttractionResource::collection($attraction->get()); //[['column' ,'operators' , 'value']]
 
     }
+
 
     /**
      * Store a newly created resource in storage.

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\AttractionController;
 use App\Http\Controllers\Api\V1\HotelController;
+use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Resources\V1\HotelResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,6 @@ Route::group([
 
 ], function () {
     Route::apiResource('/attractions', AttractionController::class);
+    Route::apiResource('/restaurants', RestaurantController ::class);
     Route::apiResource('/hotels', HotelController::class);
 });
