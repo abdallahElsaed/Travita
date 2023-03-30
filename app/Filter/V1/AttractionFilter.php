@@ -11,6 +11,8 @@ class AttractionFilter extends ApiFilter
         'subtype' => ['li'],
         'num_reviews' => ['eq' , 'gt' , 'lt' ,'gte' , 'lte'],
         'rating' => ['eq' , 'gt' , 'lt' ,'gte' , 'lte'],
+        'location_string' => ['li'],
+
     ];
 
 
