@@ -75,3 +75,8 @@ use Illuminate\Support\Facades\Route;
 
 //     echo $result_json;
 // });
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
