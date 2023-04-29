@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\AttractionController;
 use App\Http\Controllers\Api\V1\HotelController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Resources\V1\HotelResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,19 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+//Auth Routes
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+});
+
+// App Routes
 Route::group([
     'prefix' => 'v1',
 

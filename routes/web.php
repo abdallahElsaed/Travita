@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 // attractions data
 // Route::get('/', function () {
-//     $data =  file_get_contents('/home/elsaed/Desktop/travita_data/attractions_be.json');
+//     $data =  file_get_contents('/home/elsaed/Desktop/travita_data/resturants (1).json');
 
 //     $array = json_decode($data, true);
 //     $result = [];
@@ -32,12 +32,10 @@ use Illuminate\Support\Facades\Route;
 //             "website" => $array['website'][$key],
 //             "rating" => $array['rating'][$key],
 //             "ranking_in_city" => $array['ranking_in_city'][$key],
-//             "ranking" => $array['ranking'][$key],
-//             "num_reviews" =>  $array['num_reviews'][$key],
-//             "location_string" => $array['location_string'][$key],
-//             "description" => $array['description'][$key],
-//             "subcategory" => $array['subcategory'][$key],
-//             "subtype" => $array['subtype'][$key],
+//             "cuisine" => $array['cuisine'][$key],
+//             "dietaryRestrictions" => $array['dietaryRestrictions'][$key],
+//             "reviewTags" => $array['reviewTags'][$key],
+//             "numberOfReviews" => $array['numberOfReviews'][$key],
 
 //         ];
 //         $result[] = $item;
@@ -51,14 +49,14 @@ use Illuminate\Support\Facades\Route;
 
 // attraction_hours data
 // Route::get('/', function () {
-//     $data =  file_get_contents('/home/elsaed/Desktop/travita_data/attractions_hours.json');
+//     $data =  file_get_contents('/home/elsaed/Desktop/travita_data/returants_hours.json');
 
 //     $array = json_decode($data, true);
 //     $result = [];
 
 //     foreach ($array['id'] as $key => $value) {
 //         $item = [
-//             "attraction_id" =>$array['id'][$key],
+//             "restaurant_id" =>$array['id'][$key],
 //             "day1" => $array['day1'][$key],
 //             "day2" => $array['day2'][$key],
 //             "day3" => $array['day3'][$key],
