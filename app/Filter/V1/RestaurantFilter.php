@@ -10,6 +10,8 @@ class RestaurantFilter extends ApiFilter
         'numberOfReviews' => ['eq' , 'gt' , 'lt' ,'gte' , 'lte'],
         'address' => ['li'],
         'dietaryRestrictions' => ['li'],
+        'rating' => ['eq' , 'gt' , 'lt' ,'gte' , 'lte'],
+
 
     ];
 

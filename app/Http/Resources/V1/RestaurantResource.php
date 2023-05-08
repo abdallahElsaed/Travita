@@ -22,6 +22,7 @@ class RestaurantResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'numberOfReviews' => $this->numberOfReviews,
+            'rating' => $this->rating,
             'ranking' => $this->ranking,
             'ranking_in_city' => $this->ranking_in_city,
             'cuisine' => $this->cuisine,
