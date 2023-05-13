@@ -1,10 +1,13 @@
 <?php
 namespace App\Models;
+use App\Models\Hotel;
+use App\Models\Attraction;
+use App\Models\Restaurant;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -58,5 +61,21 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    // retrieve specific place by user id
+    public function restaurants()
+    {
+        return $this->morphedByMany(Restaurant::class, 'favoritable', 'favorites');
+    }
+
+    public function attractions()
+    {
+        return $this->morphedByMany(Attraction::class, 'favoritable', 'favorites');
+    }
+
+    public function hotels()
+    {
+        return $this->morphedByMany(Hotel::class, 'favoritable', 'favorites');
     }
 }

@@ -19,7 +19,7 @@ class ApiFilter
 
         foreach ($this->safeParams as $param => $operators) {
             $query = $request->query($param);
-
+// dd($query);
             if (!isset($query)) {
                 continue;
             }

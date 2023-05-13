@@ -12,4 +12,10 @@ class Restaurant extends Model
     public function restaurantHours(){
         return $this->hasMany(Restaurant_hour::class);
     }
+
+    // by
+    public function favorites()
+    {
+            return $this->morphToMany(Favorite::class, 'favoritable', 'favorites');
+    }
 }

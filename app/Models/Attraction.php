@@ -12,4 +12,9 @@ class Attraction extends Model
     public function attractionHours(){
         return $this->hasMany(Attraction_hour::class);
     }
+
+    public function favorites()
+{
+    return $this->morphToMany(Favorite::class, 'favoritable', 'favorites');
+}
 }

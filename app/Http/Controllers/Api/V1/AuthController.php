@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1;
-use App\Http\Controllers\Controller;
+use App\Models\User;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+// use Validator;
 
 class AuthController extends Controller
 {
@@ -45,12 +46,13 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        // $validator = Validator::make($request->all(), [
         $validator = Validator::make($request->all(), [
             'lname' => 'required|string|between:2,100',
             'fname' => 'required|string|between:2,100',
-            // 'username' => 'required|string|between:2,100',
+            'username' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirm|min:6',
+            'password' => 'required|string|confirmed|min:6',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);

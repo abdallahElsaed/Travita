@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hotel extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
-    public function favorites()
-    {
-        return $this->morphToMany(Favorite::class, 'favoritable', 'favorites');
-    }
+    protected $fillable=[
+        'user_id',
+        'favoritable_type',
+        'favoritable_id',
+    ];
 }
