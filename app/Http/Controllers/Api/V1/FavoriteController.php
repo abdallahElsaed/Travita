@@ -42,7 +42,7 @@ class FavoriteController extends Controller
             'favoritable_type' => 'required|in:Hotel,Restaurant,Attraction',
         ]);
 
-        $user = Auth::guard('api')->user();
+        $user = Auth::user();
         $data=$request->all();
 
         $data['user_id'] = $user->id;
@@ -74,8 +74,13 @@ class FavoriteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, string $type)
+    public function destroy(string $type,int $id)
     {
+        Favorite::where('favoritable_id', $id)
+            ->where('favoritable_type', 'App\\Models\\' . $type)
+            ->delete();
+
+        return response()->json(['message' => 'Favorite deleted successfully.']);
 
     }
 }

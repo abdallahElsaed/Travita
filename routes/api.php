@@ -55,6 +55,8 @@ Route::group([
 ], function () {
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::delete('/favorites/{type}/{id}', [FavoriteController::class, 'destroy']);
+
     // Route::apiResource('/favorites', FavoriteController::class);
 
 });
