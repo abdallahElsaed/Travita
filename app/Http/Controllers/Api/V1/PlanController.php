@@ -20,6 +20,7 @@ class PlanController extends Controller
 
     public function storePlans(Request $request){
         $request->validate([
+            'city' => 'required | string',
             'days' => 'required | numeric',
             'price' => 'required | numeric',
             'latitude' => 'required | numeric',
@@ -28,6 +29,7 @@ class PlanController extends Controller
 
         $user = Auth::user();
         $data=$request->all();
+
 
         $data['user_id'] = $user->id;
 

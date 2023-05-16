@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('city');
             $table->integer('days')->default(1);
             $table->double('price');
             $table->double('latitude');
