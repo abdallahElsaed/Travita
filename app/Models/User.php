@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use App\Models\Plan;
 use App\Models\Hotel;
 use App\Models\Attraction;
 use App\Models\Restaurant;
@@ -77,5 +78,9 @@ class User extends Authenticatable implements JWTSubject
     public function hotels()
     {
         return $this->morphedByMany(Hotel::class, 'favoritable', 'favorites');
+    }
+
+    public function plans(){
+        return $this->hasMany(Plan::class);
     }
 }

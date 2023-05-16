@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\HotelController;
 use App\Http\Controllers\Api\V1\FavoriteController;
 use App\Http\Controllers\Api\V1\AttractionController;
+use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 
 /*
@@ -57,6 +58,15 @@ Route::group([
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::delete('/favorites/{type}/{id}', [FavoriteController::class, 'destroy']);
 
-    // Route::apiResource('/favorites', FavoriteController::class);
+});
+
+Route::group([
+    'middleware' => 'jwt.verify',
+    'prefix' => 'v1',
+
+], function () {
+    Route::post('/plan', [PlanController::class, 'storePlans'])->name('plan.store');
+    Route::get('/plan', [PlanController::class, 'showAllPlans'])->name('plan.show');
 
 });
+
