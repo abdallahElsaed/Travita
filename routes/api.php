@@ -67,6 +67,8 @@ Route::group([
 ], function () {
     Route::post('/plan', [PlanController::class, 'storePlans'])->name('plan.store');
     Route::get('/plan', [PlanController::class, 'showAllPlans'])->name('plan.show');
+    Route::get('/survey', [PlanController::class, 'showSurveys'])->name('plan.showSurveys');
+    Route::post('/survey', [PlanController::class, 'storeSurveys'])->name('plan.storeSurveys');
 
 });
 

@@ -18,9 +18,9 @@ class FavoriteController extends Controller
     {
         $user = Auth::user();
 
-        $restaurant = $user->restaurants()->get();
-        $hotel = $user->hotels()->get();
-        $attraction = $user->attractions()->get();
+        $restaurant = $user->restaurants()->distinct()->get();
+        $hotel = $user->hotels()->distinct()->get();
+        $attraction = $user->attractions()->distinct()->get();
 
 
         return response()->json([

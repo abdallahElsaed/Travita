@@ -2,6 +2,7 @@
 namespace App\Models;
 use App\Models\Plan;
 use App\Models\Hotel;
+use App\Models\Survey;
 use App\Models\Attraction;
 use App\Models\Restaurant;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -82,5 +83,15 @@ class User extends Authenticatable implements JWTSubject
 
     public function plans(){
         return $this->hasMany(Plan::class);
+    }
+
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
+
+    public function aiplans()
+    {
+        return $this->hasMany(Aiplan::class);
     }
 }

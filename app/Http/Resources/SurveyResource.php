@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlanResource extends JsonResource
+class SurveyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class PlanResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'city' => $this->city,
-            'days' => $this->days,
-            'price' => $this->price,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude
+            'img_id',
+            'rate',
         ];
     }
 }
