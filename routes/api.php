@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\FavoriteController;
 use App\Http\Controllers\Api\V1\AttractionController;
 use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\SearchImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,5 +71,14 @@ Route::group([
     Route::get('/survey', [PlanController::class, 'showSurveys'])->name('plan.showSurveys');
     Route::post('/survey', [PlanController::class, 'storeSurveys'])->name('plan.storeSurveys');
 
+});
+
+Route::group([
+    'middleware' => 'jwt.verify',
+    'prefix' => 'v1',
+
+], function () {
+    Route::post('/search-image', [SearchImageController::class, 'storeImage']);
+    Route::get('/search-result', [SearchImageController::class, 'searchResult']);
 });
 

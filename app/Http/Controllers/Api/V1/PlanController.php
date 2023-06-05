@@ -38,7 +38,7 @@ class PlanController extends Controller
             'timeout' => 1500
         ]);
 
-        // save response in aiPlan in DB 
+        // save response in aiPlan in DB
         try {
 
             $data = new Aiplan();
