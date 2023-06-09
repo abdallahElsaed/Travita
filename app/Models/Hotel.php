@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tripplace;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotel extends Model
 {
@@ -12,5 +13,10 @@ class Hotel extends Model
     public function favorites()
     {
         return $this->morphToMany(Favorite::class, 'favoritable', 'favorites');
+    }
+
+    public function addPlaceTrip()
+    {
+        return $this->morphToMany(Tripplace::class, 'trippable', 'tripplaces');
     }
 }

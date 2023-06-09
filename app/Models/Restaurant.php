@@ -18,4 +18,8 @@ class Restaurant extends Model
     {
             return $this->morphToMany(Favorite::class, 'favoritable', 'favorites');
     }
+    public function addPlaceTrip()
+    {
+        return $this->morphToMany(Tripplace::class, 'trippable', 'tripplaces');
+    }
 }

@@ -65,7 +65,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    // retrieve specific place by user id
+    // retrieve specific place by user id (add places to favorites)
     public function restaurants()
     {
         return $this->morphedByMany(Restaurant::class, 'favoritable', 'favorites');
@@ -81,6 +81,28 @@ class User extends Authenticatable implements JWTSubject
         return $this->morphedByMany(Hotel::class, 'favoritable', 'favorites');
     }
 
+/**
+     * Retrieves the favored restaurants for a trip.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\MorphToMany
+*/
+    public function restaurantsTrip()
+    {
+        return $this->morphedByMany(Restaurant::class, 'trippable', 'tripplaces');
+    }
+
+    public function attractionsTrip()
+    {
+        return $this->morphedByMany(Attraction::class, 'trippable', 'tripplaces');
+    }
+
+    public function hotelsTrip()
+    {
+        return $this->morphedByMany(Hotel::class, 'trippable', 'tripplaces');
+    }
+
+
+    //
     public function plans(){
         return $this->hasMany(Plan::class);
     }
@@ -93,5 +115,10 @@ class User extends Authenticatable implements JWTSubject
     public function aiplans()
     {
         return $this->hasMany(Aiplan::class);
+    }
+
+      public function trips()
+    {
+        return $this->hasMany(Trip::class);
     }
 }

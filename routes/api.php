@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\AttractionController;
 use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\RestaurantController;
 use App\Http\Controllers\Api\V1\SearchImageController;
+use App\Http\Controllers\Api\V1\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,13 @@ Route::group([
     Route::get('/search-result', [SearchImageController::class, 'searchResult']);
 });
 
+Route::group([
+    'middleware' => 'jwt.verify',
+    'prefix' => 'v1',
+
+], function () {
+    Route::post('/trip', [TripController::class, 'storeTrip']);
+    Route::get('/trip', [TripController::class, 'showTrips']);
+    Route::post('/trip-places', [TripController::class, 'storePlaces']);
+    Route::get('/trip-places', [TripController::class, 'showPlaces']);
+});
