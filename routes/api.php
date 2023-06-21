@@ -93,7 +93,7 @@ Route::group([
     Route::post('/trip', [TripController::class, 'storeTrip']);
     Route::get('/trip', [TripController::class, 'showTrips']);
     Route::post('/trip-places', [TripController::class, 'storePlaces']);
-    Route::get('/trip-places', [TripController::class, 'showPlaces']);
+    Route::post('/trip-places', [TripController::class, 'showPlaces']);
 
     Route::get('/top-recommendation', TopRecommendtionController::class);
 

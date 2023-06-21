@@ -60,20 +60,30 @@ class TripController extends Controller
         ]);
     }
 
-    public function showPlaces()
+    public function showPlaces(Request $request)
     {
-        $user = Auth::user();
 
-        $restaurant = $user->restaurantsTrip()->distinct()->get();
-        $hotel = $user->hotelsTrip()->distinct()->get();
-        $attraction = $user->attractionsTrip()->distinct()->get();
+        $user = Auth::user();
+// dd($request->input('trip_id'));
+        $restaurant = $user->restaurantsTrip()
+                    ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
+                    ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+
+        // $hotel = $user->hotelsTrip()
+        //                 ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
+        //                 ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+
+        // $attraction = $user->attractionsTrip()
+        //             ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
+        //             ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+
 
 
         return response()->json([
             'data'=>[
                 'Restaurant' => $restaurant,
-                'Hotel' => $hotel,
-                'Attraction' => $attraction
+            //     'Hotel' => $hotel,
+            //     'Attraction' => $attraction
             ]
         ]);
     }
