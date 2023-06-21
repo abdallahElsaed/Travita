@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\FavoriteController;
 use App\Http\Controllers\Api\V1\AttractionController;
 use App\Http\Controllers\Api\V1\PlanController;
 use App\Http\Controllers\Api\V1\RestaurantController;
+use App\Http\Controllers\Api\V1\RestaurantSquareController;
 use App\Http\Controllers\Api\V1\SearchImageController;
 use App\Http\Controllers\Api\V1\TopRecommendtionController;
 use App\Http\Controllers\Api\V1\TripController;
@@ -95,5 +96,8 @@ Route::group([
     Route::get('/trip-places', [TripController::class, 'showPlaces']);
 
     Route::get('/top-recommendation', TopRecommendtionController::class);
+
+    // Restaurants square
+    Route::post('/restaurants-square', [RestaurantSquareController::class, 'restaurantSquare']);
 
 });

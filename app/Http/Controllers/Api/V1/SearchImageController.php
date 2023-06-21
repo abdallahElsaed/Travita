@@ -13,19 +13,19 @@ use Illuminate\Support\Facades\Storage;
 
 class SearchImageController extends Controller
 {
+
     public function storeImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image',
+            'image' => 'required',
         ]);
-        // Store the uploaded image
-        $imagePath = $request->file('image')->store('public/images');
-        $imageUrl = asset(Storage::url($imagePath));
-// dd($imageUrl);
+
+// dd($request->input('image'));
+
 
         SearchImage::create([
             'user_id' => Auth::user()->id,
-            'image' => $imageUrl
+            'image' =>$request->input('image'),
         ]);
 
         return response()->json([
@@ -40,9 +40,9 @@ class SearchImageController extends Controller
         // $image_path= json_decode($image, true)
 
         // dd($image->image);
-        $url= [ 'url' =>"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/7e/7d/2c/pyramids-of-giza.jpg?w=1200&h=1200&s=1"];
-        $response = Http::post('https://27b8-102-47-126-213.ngrok-free.app/image_search',$url,
-        ['timeout' => 1500]);
+        $url= [ 'url' =>$image->image];
+        $response = Http::post('https://27e9-41-232-35-195.ngrok-free.app/image_search',$url,
+        ['timeout' => 700000]);
 
         // dd($response->body());
 

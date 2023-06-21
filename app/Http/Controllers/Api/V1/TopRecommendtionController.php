@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class TopRecommendtionController extends Controller
 {
 
-    public $url = 'https://e45d-156-198-56-17.ngrok-free.app/';
+    public $url = 'https://5320-156-198-95-154.ngrok-free.app/';
     /**
      * Handle the incoming request.
      */
