@@ -66,24 +66,24 @@ class TripController extends Controller
         $user = Auth::user();
 // dd($request->input('trip_id'));
         $restaurant = $user->restaurantsTrip()
-                    ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
-                    ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+                    ->select('trip_id','image','name','address','latitude','longitude','phone','numberOfReviews','reviewTags','ranking_in_city','rating','website','email','cuisine','dietaryRestrictions')
+                    ->where('trip_id','=',(int) $request->input('trip_id'))->distinct()->get();
 
-        // $hotel = $user->hotelsTrip()
-        //                 ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
-        //                 ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+        $hotel = $user->hotelsTrip()
+                        ->select('trip_id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
+                        ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
 
-        // $attraction = $user->attractionsTrip()
-        //             ->select('trip_id','id','name','image','address','latitude','longitude','phone','priceRange','numberOfReviews','hotelClass','reviewTags','ranking_in_city','rating','website','email')
-        //             ->where('trip_id','=', $request->input('trip_id'))->distinct()->get();
+        $attraction = $user->attractionsTrip()
+                    ->select('trip_id','name','image','address','latitude','longitude','phone','num_reviews','location_string','ranking','rating','website','email','description','subcategory','subtype','ranking_in_city')
+                    ->where('trip_id','=', (int)$request->input('trip_id'))->distinct()->get();
 
 
 
         return response()->json([
             'data'=>[
                 'Restaurant' => $restaurant,
-            //     'Hotel' => $hotel,
-            //     'Attraction' => $attraction
+                'Hotel' => $hotel,
+                'Attraction' => $attraction
             ]
         ]);
     }
